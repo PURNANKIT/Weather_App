@@ -1,92 +1,170 @@
-body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(180deg, #4e54c8, #8f94fb);
-  /* margin: 0;
-  padding: 0; */
-  display: flex;
-  justify-content: center;
-  /*align-items: center; */
-  height: 100vh;
+/* -----------------------------
+   GLOBAL SETUP
+------------------------------ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-.container {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  transition: transform 0.3s ease-in-out;
+.weather-app {
+  min-height: 100vh;
+  width: 100%;
+  text-align: center;
+  padding: 30px 20px;
+  transition: background 0.5s ease-in-out;
+  background-size: cover;
+  background-position: center;
 }
 
-.container:hover {
-  transform: translateY(-10px);
+/* -----------------------------
+   WEATHER BACKGROUNDS
+------------------------------ */
+
+.weather-app.clear {
+  background: url("http://localhost:3000/images/p3.jpeg") no-repeat center/cover;
 }
+
+.weather-app.clouds {
+  background: url("http://localhost:3000/images/p1.jpg") no-repeat center/cover;
+}
+
+.weather-app.rain {
+  background: url("http://localhost:3000/images/p4.jpg") no-repeat center/cover;
+}
+
+.weather-app.thunderstorm {
+  background: url("http://localhost:3000/images/p2.jpeg") no-repeat center/cover;
+}
+
+.weather-app.default {
+  background: url("http://localhost:3000/images/p5.png") no-repeat center top;
+  background-size: cover;
+}
+
+
+
+
+
 
 h1 {
-  margin-top: 200px;;
   color: #fff;
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
+  animation: fadeIn 1s ease-in-out;
 }
+
 
 form {
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
+  gap: 10px;
+  margin-bottom: 25px;
 }
 
-input[type="text"] {
-  padding: 10px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  margin-right: 10px;
-  width: 200px;
-  transition: border-color 0.3s ease-in-out;
+input {
+  width: 250px;
+  padding: 12px 15px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: 0.2s;
 }
 
-input[type="text"]:focus {
-  border-color: #007bff;
+input:focus {
+  background: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
+
+
 
 .button {
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
+  padding: 12px 25px;
+  border-radius: 30px;
   border: none;
-  border-radius: 4px;
+  background: linear-gradient(135deg, #ff8c00, #ff5f6d);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 .button:hover {
-  background-color: #b30000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
 }
 
-.weather-info {
-  text-align: center;
-  margin-top: 20px;
+.button:active {
+  transform: translateY(1px);
 }
 
-.weather-info h2 {
-  margin-bottom: 10px;
+
+.container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 25px;
+  border-radius: 20px;
+
+  /* Glassmorphism */
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,0.4);
+
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  animation: fadeInUp 0.8s ease;
 }
 
-.weather-info p {
-  margin: 5px 0;
+.container h2 {
+  color: #fff;
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.4);
 }
 
-.raindrop {
-  position: absolute;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 50%;
-  animation: falling linear infinite;
+.container p {
+  color: #f0f0f0;
+  font-size: 1.1rem;
+  margin: 6px 0;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
 }
 
-@keyframes falling {
-  0% {
-    transform: translateY(-10vh);
-    opacity: 0;
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+
+@media (max-width: 520px) {
+  h1 {
+    font-size: 2.2rem;
   }
-  100% {
-    transform: translateY(110vh);
-    opacity: 1;
+
+  input {
+    width: 180px;
+    padding: 10px;
+  }
+
+  .button {
+    padding: 10px 20px;
+  }
+
+  .container {
+    width: 90%;
+    padding: 20px;
   }
 }
